@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
+
+  onMounted(()=>{
+    
+  })
 </script>
 
 <template>
