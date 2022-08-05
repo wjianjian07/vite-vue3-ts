@@ -10,12 +10,16 @@
     "jsx": "preserve",
     "moduleResolution": "node",
     "skipLibCheck": true, // 针对element-puls的ts打包校验
+    "types": [
+      "vite/client"
+    ],
   },
   // 配置需要校验的文件
   "include": [
     "src/**/*.ts",
     "src/**/*.js",
-    "src/**/*.vue"
+    "src/**/*.vue",
+    "tailwind.config.js"
   ],
   // 排除不需要 TypeScript 校验的文件
   "exclude": [

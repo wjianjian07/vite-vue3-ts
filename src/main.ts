@@ -1,9 +1,13 @@
-import { createApp } from 'vue'
-import ElementPlus from 'element-plus'
-import 'element-plus/dist/index.css'
-import App from './App.vue'
+import { createApp } from "vue";
+import App from "./App.vue";
+//优化css工具；去除项目未使用的样式
+import "tailwindcss/tailwind.css";
 
-const app = createApp(App)
+import router from "./router";
+import store from "./store";
+// UI框架
+import ElementPlus from "element-plus";
+import "element-plus/dist/index.css";
 
-app.use(ElementPlus)
-app.mount('#app')
+const app = createApp(App);
+app.use(ElementPlus).use(router).use(store).mount("#app");

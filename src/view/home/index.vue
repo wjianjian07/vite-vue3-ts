@@ -9,9 +9,21 @@ const count = ref(0);
 </script>
 
 <template>
-
+  <div class="home">
+    aaaa
+    <p class="title">aaa</p>
+  </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+.home {
+  width: 500px;
+  height: 200px;
+  color: #ccc;
 
+  .title {
+    padding: 20px;
+    background: blue;
+  }
+}
 </style>

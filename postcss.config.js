@@ -10,6 +10,7 @@ module.exports = {
         'iOS >= 8',
       ]
     },
+    'tailwindcss': {}
     // 转换像素单位使用（适合移动端、混合app等）
     // 'postcss-pxtorem': { 
     // rootValue: 75, //设置根元素大小, 值为移动端页面值/10

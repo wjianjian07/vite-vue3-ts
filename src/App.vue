@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { ref, reactive, onMounted } from "vue";
 
-  onMounted(()=>{
-    
-  })
+onMounted(() => {
+  
+})
 </script>
 
 <template>
   <div>
     <img alt="Vue logo" src="./assets/logo.png" />
     <el-button type="primary" size="small"></el-button>
+    <router-view />
   </div>
 </template>
 
