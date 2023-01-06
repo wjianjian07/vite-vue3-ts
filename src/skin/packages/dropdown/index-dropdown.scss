@@ -1,0 +1,29 @@
+@import './../../handle.scss';
+body{
+  .bda-dropdown {
+    .el-dropdown-menu__item:focus, .el-dropdown-menu__item:not(.is-disabled):hover{
+      @include font_color('c_color');
+      @include background_color('c_color_light');
+    }
+  }
+  .bda-dropdown-item{
+    @include font_color('dropdownMenu_text_color');
+    &:hover{
+      @include font_color('c_color');
+    }
+  }
+  .bda-dropdown-item:hover{
+    @include font_color('dropdownItem_hover_color');
+  }
+  .bda-dropdown-menu[x-placement^=bottom] .popper__arrow{
+    @include border_color('dropdownMenu_border_color', 'bottom');
+  }
+  .bda-dropdown-menu[x-placement^=bottom] .popper__arrow::after{
+    @include border_color('dropdownMenu_background_color', 'bottom');
+  }
+  .el-dropdown-menu.el-popper.bda-dropdown-menu{
+    @include border_color('dropdownMenu_border_color');
+    @include background_color('dropdownMenu_background_color');
+    @include box_shadow('dropdownMenu_box_shadow_val','dropdownMenu_box_shadow_color');
+  }
+}

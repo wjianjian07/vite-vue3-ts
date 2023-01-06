@@ -1,0 +1,31 @@
+$green-portal:( //字体色
+  portal_font_color_1:#007570,
+  portal_font_color_2:#808080,
+  portal_top_tab_icon_color:#cccccc,
+  portal_left_menu_swicth_icon_color: #cccccc,
+  portal_left_menu_icon_color:#cccccc,
+  portal_left_menu_sub_icon_color:#b2b2b2,
+  portal_right_arrow_icon_color: #b3b3b3,
+
+  //背景色
+  portal_top_tab_background_color:#ffffff,
+  portal_left_menu_background_color:#ffffff,
+  portal_top_tab_background_color_hover: #e7f5f4,
+  portal_left_menu_background_color_hover: #e7f5f4,
+  portal_top_tab_background_color_active: linear-gradient(180deg, #21a6a0, #007570),
+  portal_left_menu_background_color_active: linear-gradient(90deg, #21a6a0, #007570),
+
+  //边框线
+  border_color_1:#f0f6fa,
+  //标题色
+  title_color_1:#4d4d4d,
+
+  // 右上角菜单栏
+  setting_notice_icon_color: #a4d4ff,
+  setting_notice_background_color: #ff8080,
+  setting_user_text_color: #808080,
+  setting_user_arrow_icon_color: #b3b3b3,
+  setting_panel_background_color: #ffffff,
+  setting_header_background_color: #21a6a0,
+  setting_siknItem_active_border_color: #4298f3,
+)

@@ -1,0 +1,5 @@
+@import '../module/common/oa-blue-common.scss';
+@import '../module/portal/oa-blue-portal.scss';
+
+$oa-blue:$oa-blue-common;
+$oa-blue:map-merge($oa-blue, $oa-blue-portal);

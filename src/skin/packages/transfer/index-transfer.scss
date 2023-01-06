@@ -1,0 +1,18 @@
+@import './../../handle.scss';
+
+body {
+  .bda-transfer-table .transfer-botton-group .bda-button.enable:not(.is-disabled) {
+    @include font_color('c_color');
+    @include border_color('c_color');
+  }
+  .bda-transfer .bda-transfer-context{
+    @include border_color('transfer_default_border_color');
+    .bda-transfer-checkall{
+      @include border_color('transfer_default_border_color');
+      @include background_color('transfer_default_background_color');
+    }
+    .bda-transfer-item:hover{
+      @include background_color('transferItem_background_color');
+    }
+  }
+}

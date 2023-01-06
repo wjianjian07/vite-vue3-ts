@@ -1,0 +1,23 @@
+@import './../../handle.scss';
+// $shadowcolor:themed("switch_shadow");
+
+body{
+  .bda-tabbar {
+     @include background_color('tabber_default_background_color');
+    .bda-tabbar-option.bda-tabbar-option-checked{
+      @include font_color('c_color');
+    }
+    .bda-tabbar-option{
+      @include font_color('tabbarOption_text_color')
+    }
+    .bda-tabbar-option .iconfont:hover{
+      @include font_color('c_color');
+    }
+    .bda-tabbar-option .open-dropdown{
+      @include font_color('font_color');
+    }
+  }
+  .bda-dropdown .bda-tabbar-option-active{
+    @include font_color('font_color');
+  }
+}

@@ -1,0 +1,125 @@
+@import './../../handle.scss';
+
+body {
+  .bda-button {
+    @include border_radius('button_default_radius');
+  }
+
+  // 文本按钮
+  .bda-button.el-button--text {
+    @include font_color('botton_default_hover_text_color');
+  }
+
+  // 常规按钮
+  .bda-button[bdatype^="default"],
+  .bda-button.el-button--default:not([bdatype^="primary"]):not([bdatype^="primary"]):not([bdatype^="success"]):not([bdatype^="warning"]):not([bdatype^="danger"]) {
+    @include background_color('button_default_background_color');
+    @include border_color('button_default_border_color');
+    @include font_color('button_default_text_color');
+
+    &:hover,
+    &:focus {
+      @include border_color('botton_default_hover_border_color');
+      @include font_color('botton_default_hover_text_color');
+    }
+
+    &:active {
+      @include border_color('botton_default_border_color');
+      @include font_color('botton_default_hover_text_color');
+    }
+
+    &.is-disabled {
+      @include background_color('button_default_disabled_background_color');
+      @include border_color('button_default_disabled_border_color');
+      @include font_color('button_default_disabled_text_color');
+    }
+  }
+
+  // 主要按钮
+  .bda-button[bdatype^="primary"] {
+    @include background_color('button_primary_background_color');
+    @include border_color('button_border_color');
+    @include font_color('button_text_color');
+
+    &:hover,
+    &:focus {
+      @include background_color('button_primary_hover_background_color');
+    }
+
+    &:active {
+      @include background_color('button_primary_active_background_color');
+    }
+
+    &.is-disabled {
+      @include background_color('button_primary_disabled_background_color');
+      @include border_color('button_disabled_border_color');
+      @include font_color('button_disabled_text_color');
+    }
+  }
+
+  // 成功按钮
+  .bda-button[bdatype^="success"] {
+    @include background_color('button_success_background_color');
+    @include border_color('button_border_color');
+    @include font_color('button_text_color');
+
+    &:hover,
+    &:focus {
+      @include background_color('button_success_hover_background_color');
+    }
+
+    &:active {
+      @include background_color('button_success_active_background_color');
+    }
+
+    &.is-disabled {
+      @include background_color('button_success_disabled_background_color');
+      @include border_color('button_disabled_border_color');
+      @include font_color('button_disabled_text_color');
+    }
+  }
+
+  // 警告按钮
+  .bda-button[bdatype^="warning"] {
+    @include background_color('button_warning_background_color');
+    @include border_color('button_border_color');
+    @include font_color('button_text_color');
+
+    &:hover,
+    &:focus {
+      @include background_color('button_warning_hover_background_color');
+    }
+
+    &:active {
+      @include background_color('button_warning_active_background_color');
+    }
+
+    &.is-disabled {
+      @include background_color('button_warning_disabled_background_color');
+      @include border_color('button_disabled_border_color');
+      @include font_color('button_disabled_text_color');
+    }
+  }
+
+  // 危险按钮
+  .bda-button[bdatype^="danger"] {
+    @include background_color('button_danger_background_color');
+    @include border_color('button_border_color');
+    @include font_color('button_text_color');
+
+    &:hover,
+    &:focus {
+      @include background_color('button_danger_hover_background_color');
+    }
+
+    &:active {
+      @include background_color('button_danger_active_background_color');
+    }
+
+    &.is-disabled {
+      @include background_color('button_danger_disabled_background_color');
+      @include border_color('button_disabled_border_color');
+      @include font_color('button_disabled_text_color');
+    }
+  }
+}

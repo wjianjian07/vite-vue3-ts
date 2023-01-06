@@ -1,0 +1,105 @@
+@import './../../handle.scss';
+body{
+  // 页码
+  .bda-pagination ul.el-pager li{
+    @include font_color('paginationPager_text_color');
+    @include border_color('paginationPager_li_border_color');
+    @include border_radius('paginationPager_li_border_raduis');
+    @include background_color('paginationPager_background_color');
+    &:hover{
+      @include font_color('paginationPager_text_hover_color');
+    }
+  }
+  .bda-pagination .el-pagination__total{
+    @include font_color('paginationPager_sum_text_color')
+  }
+  // 左右按钮
+  .bda-pagination .btn-prev{
+    @include background_color('paginationNext_background_color');
+    @include border_color('paginationPager_li_border_color');
+    @include border_radius('paginationPager_li_border_raduis');
+    &:disabled{
+      @include background_color('paginationPrev_background_color');
+    }
+    &:disabled .el-icon-arrow-left {
+     @include font_color('paginationPrev_text_color');
+    }
+    .el-icon-arrow-left{
+      @include font_color('paginationNext_text_color');
+    }
+  }
+  .bda-pagination .btn-next{
+    @include background_color('paginationNext_background_color');
+    @include border_color('paginationPager_li_border_color');
+    @include border_radius('paginationPager_li_border_raduis');
+     &:disabled .el-icon-arrow-right {
+      @include font_color('paginationPrev_text_color');
+    }
+    .el-icon-arrow-right{
+      @include font_color('paginationNext_text_color');
+    }
+    &:disabled{
+      @include background_color('paginationPrev_background_color');
+    }
+  }
+  .bda-pagination .el-pagination__sizes .el-select .el-input .el-input__inner{
+    @include background_color('paginationPager_button_background_color');
+    @include border_color('paginationPager_button_border_color');
+    @include font_color('paginationPager_button_text_color');
+    &:hover{
+      @include border_color('input_hover_border_color')
+    }
+  }
+  // item样式
+  .bda-pagination{
+    .el-select-dropdown__item {
+      @include font_color('paginationPager_button_text_color');
+    }
+    .el-select-dropdown__list {
+      @include background_color('paginationPager_background_color');
+    }
+  }
+  // 跳转分页输入
+  .bda-pagination .el-pagination__jump .el-pagination__editor .el-input__inner{
+    @include border_color('paginationPager_edit_border_color');
+    @include font_color('paginationPager_text_color');
+    @include background_color('paginationPager_button_background_color');
+    &:hover{
+      @include border_color('input_hover_border_color')
+    }
+  }
+  .bda-pagination .el-pagination__jump{
+    @include font_color('paginationPager_text_color');
+  }
+  .bda-pagination.el-select-dropdown{
+    @include box_shadow('selectDropdown_box_shadow_val', 'selectDropdown_box_shadow_color');
+    @include border_color('paginationPager_button_border_color');
+  }
+  .bda-pagination.el-popper .el-select-dropdown__list:hover  .el-select-dropdown__item:hover {
+    @include background_color('paginationPager_popper_hover_color');
+  }
+  .bda-pagination .el-select-dropdown__item.hover{
+    @include background_color('paginationPager_popper_hover_color');
+  }
+  .bda-pagination ul.el-pager li.active, .bda-pagination ul.el-pager li.active.number, .bda-pagination ul.el-pager li.more:hover{
+    @include border_color("c_color");
+    @include font_color("paginationPager_active_text_color");
+    @include background_color('paginationPager_active_background_color');
+  }
+  .bda-pagination.el-pagination .el-pagination__jump .el-input__inner:focus{
+
+    @include border_color("c_color");
+  }
+  .bda-pagination .el-pagination__sizes .el-select .el-input.is-focus .el-input__inner{
+    @include border_color("c_color");
+  }
+  .bda-pagination.el-select-dropdown .el-select-dropdown__list .el-select-dropdown__item{
+    &.selected {
+      @include font_color("c_color");
+    }
+    &:hover{
+      @include font_color("c_color")
+    }
+  }
+
+}

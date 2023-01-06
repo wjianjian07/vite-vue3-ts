@@ -1,0 +1,8 @@
+@import './../../handle.scss';
+body{
+  .bda-form-item.el-form-item{
+    .el-form-item__label{
+      @include font_color('default_text_color');
+    }
+  }
+}

@@ -1,0 +1,175 @@
+@import './../../handle.scss';
+
+body {
+  .bda-confirm.el-message-box .el-message-box__content .el-message-box__message {
+    @include font_color('dialog_body_text_color');
+  }
+
+  .bda-confirm.el-message-box {
+    @include background_color('dialog_background_color');
+    @include box_shadow('dialog_box_shadow_val', 'dialog_box_shadow_color');
+    @include border_radius('dialog_border_radius');
+  }
+
+  .bda-confirm.el-message-box .el-message-box__header .el-message-box__title span {
+    @include font_color('dialog_header_title_color');
+  }
+
+  .bda-confirm {
+    .el-message-box__header {
+      @include border_color('dialog_border_color');
+
+      .el-message-box__headerbtn {
+        .el-message-box__close {
+          @include font_color('dialog_header_close_icon_color');
+
+          &:hover {
+            @include font_color('c_color');
+          }
+        }
+      }
+    }
+
+    &.el-message-box {
+      .el-message-box__content {
+        &::-webkit-scrollbar-thumb {
+          @include background_color('scroll_default_background_color');
+
+          &:hover {
+            @include background_color('scroll_hover_background_color');
+          }
+        }
+
+        .el-message-box__message {
+          strong {
+            @include font_color('c_color');
+          }
+        }
+      }
+
+      .el-message-box__btns {
+        @include border_color('dialog_border_color');
+        @include background_color('dialog_background_color');
+        .el-button {
+          &.el-button--default:not(.el-button--primary) {
+            @include background_color('button_default_background_color');
+            @include border_color('button_default_border_color');
+            @include font_color('button_default_text_color');
+
+            &:hover,
+            &:focus {
+              @include border_color('botton_default_hover_border_color');
+              @include font_color('botton_default_hover_text_color');
+            }
+
+            &:active {
+              @include border_color('botton_default_border_color');
+              @include font_color('botton_default_hover_text_color');
+            }
+
+            &.is-disabled {
+              @include background_color('button_default_disabled_background_color');
+              @include border_color('button_default_disabled_border_color');
+              @include font_color('button_default_disabled_text_color');
+            }
+          }
+
+          &.el-button--primary {
+            @include background_color('button_primary_background_color');
+            @include border_color('button_border_color');
+            @include font_color('button_text_color');
+
+            &:hover,
+            &:focus {
+              @include background_color('button_primary_hover_background_color');
+            }
+
+            &:active {
+              @include background_color('button_primary_active_background_color');
+            }
+
+            &.is-disabled {
+              @include background_color('button_primary_disabled_background_color');
+              @include border_color('button_disabled_border_color');
+              @include font_color('button_disabled_text_color');
+            }
+          }
+        }
+      }
+    }
+
+    &.is-warning {
+      &.el-message-box {
+        .el-message-box__header {
+          .el-message-box__title {
+            span {
+              @include font_color('button_warning_background_color');
+            }
+          }
+        }
+
+        .el-message-box__btns {
+          .el-button {
+            &.el-button--primary {
+              @include background_color('button_warning_background_color');
+              @include border_color('button_border_color');
+              @include font_color('button_text_color');
+
+              &:hover,
+              &:focus {
+                @include background_color('button_warning_hover_background_color');
+              }
+
+              &:active {
+                @include background_color('button_warning_active_background_color');
+              }
+
+              &.is-disabled {
+                @include background_color('button_warning_disabled_background_color');
+                @include border_color('button_disabled_border_color');
+                @include font_color('button_disabled_text_color');
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.is-error {
+      &.el-message-box {
+        .el-message-box__header {
+          .el-message-box__title {
+            span {
+              @include font_color('button_danger_background_color');
+            }
+          }
+        }
+
+        .el-message-box__btns {
+          .el-button {
+            &.el-button--primary {
+              @include background_color('button_danger_background_color');
+              @include border_color('button_border_color');
+              @include font_color('button_text_color');
+
+              &:hover,
+              &:focus {
+                @include background_color('button_danger_hover_background_color');
+              }
+
+              &:active {
+                @include background_color('button_danger_active_background_color');
+              }
+
+              &.is-disabled {
+                @include background_color('button_danger_disabled_background_color');
+                @include border_color('button_disabled_border_color');
+                @include font_color('button_disabled_text_color');
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

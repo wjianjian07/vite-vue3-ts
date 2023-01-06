@@ -1,0 +1,72 @@
+@import './../../handle.scss';
+body{
+  .bda-tooltip{
+    &.is-dark,
+    &.is-light {
+      &.el-tooltip__popper {
+        @include background_color('tooltip_background_color');
+        @include border_color('tooltip_border_color');
+        @include font_color('tooltip_text_color');
+        @include box_shadow('tooltip_box_shadow_val', 'tooltip_box_shadow_color');
+      }
+      .popper__arrow {
+        @include border_color('tooltip_border_color', 'bottom');
+      }
+
+      .popper__arrow:after {
+        @include border_color('tooltip_background_color', 'bottom');
+      }
+      &[x-placement="top"],
+      &[x-placement="top-start"],
+      &[x-placement="top-end"] {
+        @include box_shadow('tooltip_placement_top_box_shadow_val', 'tooltip_box_shadow_color');
+        .popper__arrow {
+          @include border_color('tooltip_border_color', 'top');
+        }
+
+        .popper__arrow:after {
+          @include border_color('tooltip_background_color', 'top');
+        }
+      }
+
+      &[x-placement="left"],
+      &[x-placement="left-start"],
+      &[x-placement="left-end"] {
+        .popper__arrow {
+          @include border_color('tooltip_border_color', 'left');
+        }
+
+        .popper__arrow:after {
+          @include border_color('tooltip_background_color', 'left');
+        }
+      }
+
+      &[x-placement="right"],
+      &[x-placement="right-start"],
+      &[x-placement="right-end"] {
+        .popper__arrow {
+          @include border_color('tooltip_border_color', 'right');
+        }
+
+        .popper__arrow:after {
+          @include border_color('tooltip_background_color', 'right');
+        }
+      }
+    }
+  }
+  .bda-option-tips{
+    @include background_color('tooltip_background_color');
+    @include border_color('tooltip_border_color');
+    @include font_color('tooltip_text_color');
+    @include box_shadow('tooltip_box_shadow_val', 'tooltip_box_shadow_color');
+    &.placement-top {
+      @include box_shadow('tooltip_placement_top_box_shadow_val', 'tooltip_box_shadow_color');
+    }
+    span {
+      @include border_color('tooltip_border_color', 'bottom');
+      em {
+        @include border_color('tooltip_background_color', 'bottom');
+      }
+    }
+  }
+}

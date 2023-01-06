@@ -1,0 +1,12 @@
+@import './../../handle.scss';
+body{
+  .bda-loading{
+    @include font_color('important_color');
+  }
+  .bda-table-loading-text,.bda-select-loading-text{
+    @include font_color('important_color');
+  }
+  .el-loading-mask {
+    @include background_color('loading_background_color');
+  }
+}

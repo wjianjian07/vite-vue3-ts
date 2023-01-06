@@ -1,0 +1,5 @@
+@import '../module/common/topside20-common.scss';
+@import '../module/portal/topside20-portal.scss';
+
+$topside20:$topside20-common;
+$topside20:map-merge($topside20, $topside20-portal);

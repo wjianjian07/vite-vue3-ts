@@ -1,0 +1,15 @@
+@import './../../handle.scss';
+body{
+  .__rail-is-vertical > .__bar-wrap-is-vertical > .__bar-is-vertical{
+    @include background_color('scroll_default_background_color');
+    &:hover {
+      @include background_color('scroll_hover_background_color');
+    }
+  }
+  .__rail-is-horizontal > .__bar-wrap-is-horizontal > .__bar-is-horizontal{
+    @include background_color('scroll_default_background_color');
+    &:hover {
+      @include background_color('scroll_hover_background_color');
+    }
+  }
+}

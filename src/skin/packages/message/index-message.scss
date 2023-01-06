@@ -1,0 +1,60 @@
+@import './../../handle.scss';
+
+body {
+  .el-message {
+    @include border_radius("message_border_radius");
+    @include box_shadow("message_box_shadow_val", "message_box_shadow_color");
+
+    &.el-message--success {
+      @include background_color("message_success_background_color");
+      @include border_color("message_success_border_color");
+
+      .el-message__content {
+        @include font_color("message_success_text_color");
+      }
+
+      .el-icon-success {
+        @include font_color("message_success_text_color");
+      }
+    }
+
+    &.el-message--warning {
+      @include background_color("message_warning_background_color");
+      @include border_color("message_warning_border_color");
+
+      .el-message__content {
+        @include font_color("message_warning_text_color");
+      }
+
+      .el-icon-warning {
+        @include font_color("message_warning_text_color");
+      }
+    }
+
+    &.el-message--info {
+      @include background_color("message_info_background_color");
+      @include border_color("message_info_border_color");
+
+      .el-message__content {
+        @include font_color("message_info_text_color");
+      }
+
+      .el-icon-info {
+        @include font_color("message_info_text_color");
+      }
+    }
+
+    &.el-message--error {
+      @include background_color("message_error_background_color");
+      @include border_color("message_error_border_color");
+
+      .el-message__content {
+        @include font_color("message_error_text_color");
+      }
+
+      .el-icon-error {
+        @include font_color("message_error_text_color");
+      }
+    }
+  }
+}

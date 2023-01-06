@@ -1,0 +1,5 @@
+@import '../module/common/green-common.scss';
+@import '../module/portal/green-portal.scss';
+
+$green:$green-common;
+$green:map-merge($green, $green-portal);

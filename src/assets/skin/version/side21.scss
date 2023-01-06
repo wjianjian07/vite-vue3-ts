@@ -1,0 +1,5 @@
+@import '../module/common/side21-common.scss';
+@import '../module/portal/side21-portal.scss';
+
+$side21:$side21-common;
+$side21:map-merge($side21, $side21-portal);

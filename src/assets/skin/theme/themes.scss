@@ -1,0 +1,10 @@
+@import './blue.scss';
+@import './gray.scss';
+@import './green.scss';
+@import './oa-blue.scss';
+$themes: (
+  blue:$blue,
+  gray:$gray,
+  green:$green,
+  oaBlue:$oa-blue
+);

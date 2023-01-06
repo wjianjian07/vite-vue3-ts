@@ -1,0 +1,7 @@
+@function merge($list){
+  $map:();
+  @each $var in $list {
+    $map:map-merge($map,$var)
+  }
+  @return $map
+}

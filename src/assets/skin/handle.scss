@@ -1,0 +1,130 @@
+@import "./theme/themes.scss";
+@import "./version/versions.scss";
+
+//遍历主题map
+@mixin themeify {
+
+  @each $theme-name,
+  $theme-map in $themes {
+    //!global 把局部变量强升为全局变量
+    $theme-map: $theme-map !global;
+
+    //判断html的data-theme的属性值 #{}是sass的插值表达式
+    //& sass嵌套里的父容器标识  @content是混合器插槽，像vue的slot
+    @if $theme-name==blue {
+      & {
+        @content;
+      }
+
+      [data-theme="#{'' + $theme-name}"] & {
+        @content;
+      }
+    }
+
+    @else {
+      [data-theme="#{'' + $theme-name}"] & {
+        @content;
+      }
+    }
+  }
+}
+
+//声明一个根据Key获取颜色的function
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}
+
+//获取字体颜色
+@mixin font_color($color) {
+  @include themeify {
+    color: themed($color);
+  }
+}
+
+//获取背景颜色
+@mixin background_color($color) {
+  @include themeify {
+    background: themed($color);
+  }
+}
+
+//获取背景颜色
+@mixin background_image($color) {
+  @include themeify {
+    background-image: themed($color);
+  }
+}
+
+//获取阴影数值及颜色
+@mixin box_shadow($val, $color) {
+  @include themeify {
+    box-shadow: themed($val) themed($color);
+  }
+}
+
+//获取粗细
+@mixin font_weight($weight) {
+  @include themeify {
+    font-weight: themed($weight);
+  }
+}
+
+//获取边框颜色
+@mixin border_color($color, $position: null) {
+  @include themeify {
+    @if $position !=null {
+      border-#{$position}-color: themed($color);
+    }
+
+    @else {
+      border-color: themed($color);
+    }
+  }
+}
+
+//获取边框圆角
+@mixin border_radius($radius, $position: null) {
+  @include themeify {
+    @if $position !=null {
+      border-#{$position}-radius: themed($radius);
+    }
+
+    @else {
+      border-radius: themed($radius);
+    }
+  }
+}
+
+//遍历主题map
+@mixin versionify {
+
+  @each $version-name,
+  $version-map in $versions {
+    //!global 把局部变量强升为全局变量
+    $version-map: $version-map !global;
+
+    //判断html的data-version的属性值 #{}是sass的插值表达式
+    //& sass嵌套里的父容器标识  @content是混合器插槽，像vue的slot
+    [data-version="#{$version-name}"] & {
+      @content;
+    }
+  }
+}
+
+@function versiond($key) {
+  @return map-get($version-map, $key);
+}
+
+//获取display
+@mixin display_type($type) {
+  @include versionify {
+    display: versiond($type);
+  }
+}
+
+//获取visibility
+@mixin visibility_type($type) {
+  @include versionify {
+    visibility: versiond($type);
+  }
+}

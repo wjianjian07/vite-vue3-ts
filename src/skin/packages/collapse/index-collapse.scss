@@ -1,0 +1,69 @@
+@import './../../handle.scss';
+
+body {
+  .bda-collapse {
+    @include border_color('collapse_border_color', 'top');
+    @include border_color('collapse_border_color', 'bottom');
+
+    .el-collapse-item__header {
+      @include background_color('collapse_header_background_color');
+      @include font_color('collapse_default_font_color');
+      @include border_color('collapse_border_color', 'bottom');
+
+      &:hover,
+      &.is-active {
+        @include font_color('c_color');
+      }
+
+    }
+
+    .el-collapse-item.is-disabled {
+      .el-collapse-item__header {
+        @include font_color('collapse_disabled_font_color');
+      }
+    }
+
+    .el-collapse-item__wrap {
+      @include border_color('collapse_border_color', 'bottom');
+
+      .el-collapse-item__content {
+        @include font_color('collapse_content_font_color');
+      }
+    }
+
+    .el-collapse-item__arrow::after {
+      @include border_color('c_color');
+    }
+
+    &[bdaType="tile"] {
+      >.el-collapse-item>div:not(.el-collapse-item__wrap) .el-collapse-item__header {
+        @include background_color('collapse_header_background_color');
+
+        i.el-collapse-item__arrow {
+          &::after {
+            @include border_color('collapse_default_font_color');
+          }
+        }
+
+        &:hover,
+        &.is-active {
+          i.el-collapse-item__arrow {
+            &::after {
+              @include border_color('c_color');
+            }
+          }
+        }
+      }
+
+      >.el-collapse-item.is-disabled {
+        >div:not(.el-collapse-item__wrap) .el-collapse-item__header {
+          i.el-collapse-item__arrow {
+            &::after {
+              @include border_color('collapse_disabled_font_color');
+            }
+          }
+        }
+      }
+    }
+  }
+}

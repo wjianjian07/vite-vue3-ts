@@ -1,0 +1,227 @@
+@import './../../handle.scss';
+body{
+  .bda-search-input{
+    // 搜索输入框
+    .el-input__suffix i{
+      @include font_color('input_icon_color')
+    }
+  }
+  .bda-input{
+    input{
+      @include background_color('input_default_background_color');
+      @include border_color('input_default_border_color');
+      @include font_color('input_default_text_color');
+      // 占位
+      &::-webkit-input-placeholder {
+        @include font_color('placeholder_text_color');
+      }
+      &:-ms-input-placeholder {
+        @include font_color('placeholder_text_color');
+      }
+      &:hover{
+        @include border_color('input_hover_border_color')
+      }
+      &[disabled^="disabled"] {
+        @include border_color('input_disabled_border_color');
+        @include background_color('input_disabled_background_color');
+        @include font_color('input_disabled_text_color');
+      }
+    }
+    // 图标插值
+    .el-input-group__append, .el-input-group__prepend{
+      @include border_color('input_append_border_color');
+      @include font_color('input_append_text_color');
+      @include background_color('input_append_background_color');
+    }
+    textarea:hover{
+      @include border_color('input_hover_border_color')
+    }
+    .el-input__inner:not([disabled^=disabled]):focus{
+      @include border_color('c_color');
+    }
+    textarea{
+      @include border_color('textArea_default_border_color');
+      @include font_color('textArea_default_text_color');
+      // 占位
+      &::-webkit-input-placeholder {
+        @include font_color('placeholder_text_color');
+      }
+      &:-ms-input-placeholder {
+        @include font_color('placeholder_text_color');
+      }
+      &[disabled^="disabled"] {
+        @include border_color('textArea_disabled_border_color');
+        @include background_color('textArea_disabled_background_color');
+        @include font_color('textArea_disabled_text_color');
+      }
+    }
+    .bda-input:not(.is-disabled) .el-input__prefix i:hover,.bda-input .el-input__suffix i:hover{
+        @include font_color('c_color');
+    }
+    &.el-textarea{
+      .el-textarea__inner:focus{
+        @include border_color('c_color');
+      }
+    }
+
+    &.el-input--prefix,.el-input__suffix{
+      i {
+        &:hover {
+          @include font_color('c_color');
+        }
+      }
+    }
+  }
+  .bda-input-number{
+    &.el-input-number {
+      .el-input-number__decrease,.el-input-number__increase{
+        @include font_color('inputNumber_decrease_text_color');
+        @include border_color('inputNumber_decrease_border_color');
+        @include background_color('inputNumber_decrease_background_color');
+        &:hover {
+          @include font_color('c_color');
+          &:not(.is-disabled)~.el-input .el-input__inner:not(.is-disabled) {
+            @include border_color('c_color');
+          }
+        }
+      }
+      .el-input__inner:hover{
+        @include border_color('input_hover_border_color');
+      }
+      .el-input__inner:focus{
+        @include border_color('c_color');
+      }
+      .el-input__inner{
+        @include border_color('inputNumber_default_border_color');
+        @include font_color('inputNumber_default_text_color');
+        @include background_color('inputNumber_default_background_color');
+        // 占位
+        &::-webkit-input-placeholder {
+          @include font_color('placeholder_text_color');
+        }
+        &:-ms-input-placeholder {
+          @include font_color('placeholder_text_color');
+        }
+        &[disabled^="disabled"] {
+          @include border_color('inputNumber_disabled_border_color');
+          @include background_color('inputNumber_disabled_background_color');
+          @include font_color('inputNumber_disabled_text_color');
+        }
+      }
+    }
+    .el-input__inner{
+      @include border_color('inputNumber_default_border_color');
+      @include font_color('inputNumber_default_text_color');
+      @include background_color('inputNumber_default_background_color');
+      // 占位
+      &::-webkit-input-placeholder {
+        @include font_color('placeholder_text_color');
+      }
+      &:-ms-input-placeholder {
+        @include font_color('placeholder_text_color');
+      }
+      &[disabled^="disabled"] {
+        @include border_color('inputNumber_disabled_border_color');
+        @include background_color('inputNumber_disabled_background_color');
+        @include font_color('inputNumber_disabled_text_color');
+      }
+    }
+  }
+  .bda-autocomplete {
+    .el-input__inner:not([disabled^=disabled]):focus{
+      @include border_color('c_color');
+    }
+    .el-input__inner:hover{
+      @include border_color('input_hover_border_color')
+    }
+    .el-input__inner{
+      @include border_color('inputAutocomplete_default_border_color');
+      @include font_color('inputAutocomplete_default_text_color');
+      @include background_color('inputAutocomplete_default_background_color');
+      // 占位
+      &::-webkit-input-placeholder {
+        @include font_color('placeholder_text_color');
+      }
+      &:-ms-input-placeholder {
+        @include font_color('placeholder_text_color');
+      }
+      &[disabled^="disabled"] {
+        @include border_color('inputAutocomplete_disabled_border_color');
+        @include background_color('inputAutocomplete_disabled_background_color');
+        @include font_color('inputAutocomplete_disabled_text_color');
+      }
+    }
+  }
+  .bda-input .el-textarea__inner{
+    @include background_color('textArea_background_color');
+  }
+  .bda-input.el-textarea .el-input__count{
+    @include font_color('textArea_count_text_color');
+    @include background_color('textArea_cuont_background_color');
+  }
+  .bda-autocomplete.el-popper {
+    @include box_shadow('inputAutocompletePopper_box_shadow_val', 'inputAutocompletePopper_box_shadow_color');
+    @include border_color('inputAutocompletePopper_border_color');
+    @include background_color('inputAutocomplete_default_background_color');
+    .el-scrollbar .el-scrollbar__thumb{
+      @include background_color('scroll_default_background_color');
+      &:hover {
+        @include background_color('scroll_hover_background_color');
+      }
+    }
+    .el-autocomplete-suggestion__wrap {
+      .el-autocomplete-suggestion__list {
+        li {
+          @include font_color('inputAutocomplete_scroll_text_color');
+          &:hover {
+            @include background_color("c_color_light");
+            @include font_color('c_color');
+          }
+        }
+      }
+    }
+    .el-scrollbar .el-scrollbar__bar {
+      opacity: 1;
+    }
+    .el-scrollbar__bar.is-horizontal {
+      height: 8px !important;
+    }
+    .el-scrollbar__bar.is-vertical {
+      width: 8px !important;
+    }
+    .el-scrollbar__thumb {
+      background: rgba(0, 0, 0, 0.1);
+      &:hover {
+        background: rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+  // 富文本编辑框
+  .bda-ueditor .edui-default {
+    .edui-editor {
+      @include border_color('input_default_border_color');
+      @include background_color('input_default_background_color');
+      .edui-editor-bottomContainer td {
+        @include border_color('input_default_border_color', 'top');
+        @include font_color('default_text_color');
+      }
+      .edui-editor-breadcrumb span {
+        @include font_color('c_color');
+      }
+    }
+  }
+  .edui-default {
+    .edui-popup {
+      @include background_color('select_default_backround_color');
+    }
+    .edui-popup-content {
+      background-color: transparent;
+      @include font_color('select_default_text_color');
+      @include border_color('selectDropdown_border_color');
+    }
+    .edui-list .edui-state-hover {
+      border-color: transparent;
+      @include background_color('selectScroll_hover_color');
+    }
+  }
+}

@@ -1,0 +1,5 @@
+@import '../module/common/blue-common.scss';
+@import '../module/portal/blue-portal.scss';
+
+$blue:$blue-common;
+$blue:map-merge($blue, $blue-portal);

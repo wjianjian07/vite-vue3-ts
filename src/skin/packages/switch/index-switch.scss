@@ -1,0 +1,34 @@
+@import './../../handle.scss';
+// $shadowcolor:themed("switch_shadow");
+
+body{
+  .bda-switch .bda-switch-btn.is-close{
+    @include background_color('switch_close_background_color');
+    @include border_color('switch_close_border_color');
+  }
+  .bda-switch .bda-switch-btn.is-close:after{
+    @include background_color('')
+  }
+  .bda-switch {
+    .bda-switch-btn{
+      &[disabled^="disabled"]{
+        // @include opacity()
+      }
+    }
+    .bda-switch-btn &.is-open{
+      @include  box_shadow(0 0 6px 0 , 'switch_default_box_shadow');
+    }
+    span.bda-switch-btn:not([disabled^=disabled])::after {
+      // background-color: $shadowcolor;
+      @include themeify {
+        // opacity: .7;
+        // box-shadow: 0 0 6px themed("switch_shadow")!important;
+      }
+      // &::after {
+      // }
+    }
+    span.bda-switch-btn:not([disabled^=disabled]).is-open {
+      @include background_color("c_color")
+    }
+  }
+}

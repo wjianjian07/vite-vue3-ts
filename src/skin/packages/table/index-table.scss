@@ -1,0 +1,172 @@
+@import './../../handle.scss';
+
+body {
+  .bda-table {
+    .el-table__empty-block {
+      .el-table__empty-text {
+        @include font_color('placeholder_text_color');
+      }
+    }
+
+    .el-table__fixed,
+    .el-table__fixed-left {
+      @include background_color('table_fixed_background_color');
+      @include box_shadow('table_fixed_left_box_shadow_val', 'table_fixed_box_shadow_color');
+    }
+
+    .el-table__fixed-right {
+      @include background_color('table_fixed_background_color');
+      @include box_shadow('table_fixed_right_box_shadow_val', 'table_fixed_box_shadow_color');
+    }
+  }
+
+  .bda-main {
+    @include border_color('table_default_border_color');
+
+    .bda-table {
+      .bda-table-loading {
+        @include background_color('table_loading_background_color');
+      }
+    }
+  }
+  // 悬浮
+  .bda-table .el-table__body tr.hover-row.current-row>td.el-table__cell,
+  .bda-table tr.hover-row>td,
+  .bda-table.el-table--enable-row-hover .el-table__body tr:hover>td {
+    @include background_color('table_hover_color');
+  }
+  // 斑马纹
+  .bda-table.el-table--striped .el-table__body tr.el-table__row--striped td.el-table__cell {
+    @include background_color('table_striped_background_color');
+  }
+  // 斑马纹悬浮
+  .bda-table.el-table--striped .el-table__body tr.el-table__row--striped.hover-row td.el-table__cell {
+    @include background_color('table_striped_hover_background_color');
+  }
+
+  .bda-table tr.current-row>td {
+    @include background_color('c_color_light');
+  }
+
+  // tr设置透明
+  .bda-table.el-table tr {
+    @include background_color('table_default_background_color');
+  }
+  .bda-main .bda-table .bda-table-scroll_y {
+    @include background_color('table_scroll_background_color');
+    @include border_color('table_scroll_border_color');
+
+    .bda-table-scroll_y_view {
+      @include background_color('scroll_default_background_color');
+
+      &:hover {
+        @include background_color('scroll_hover_background_color');
+      }
+    }
+  }
+
+  .bda-main .bda-table .bda-table-scroll_x {
+    @include background_color('table_scroll_background_color');
+    @include border_color('table_scroll_border_color');
+
+    .bda-table-scroll_x_view {
+      @include background_color('scroll_default_background_color');
+
+      &:hover {
+        @include background_color('scroll_hover_background_color');
+      }
+    }
+  }
+
+  .bda-pagination-table .bda-pagination-table-page {
+    @include border_color('table_scroll_border_color');
+  }
+
+  .bda-table {
+    @include background_color('table_default_background_color');
+
+    td {
+      @include border_color('table_default_border_color');
+      @include background_color('table_default_background_color')
+    }
+
+    td {
+      @include font_color('table_td_text_color')
+    }
+
+    .el-table__header {
+
+      tr,
+      th {
+        @include border_color('table_header_border_color');
+        @include background_color('table_header_background_color');
+      }
+
+      tr {
+        th {
+          .cell {
+            @include font_color('table_header_text_color')
+          }
+        }
+      }
+    }
+
+    .el-checkbox {
+
+      // 以下copy bda-checkbox scss，去掉deep
+      // 常规
+      .el-checkbox__input {
+        .el-checkbox__inner {
+          @include border_radius('checkbox_default_border_radius');
+          @include border_color('checkbox_default_border_color');
+          @include background_color('checkbox_default_background_color')
+        }
+
+        +.el-checkbox__label {
+          @include font_color('checkbox_default_text_color');
+        }
+
+        &.is-checked,
+        &.is-indeterminate {
+          .el-checkbox__inner {
+            @include border_color('c_color');
+            @include background_color('c_color');
+          }
+
+          &.is-disabled {
+            .el-checkbox__inner {
+              @include background_color('checkbox_disabled_checked_background_color');
+            }
+          }
+        }
+      }
+
+      // 悬浮
+      &:hover {
+        .el-checkbox__input {
+          .el-checkbox__inner {
+            @include border_color('c_color');
+          }
+
+          +.el-checkbox__label {
+            @include font_color("c_color");
+          }
+        }
+      }
+
+      // 禁用
+      &.is-disabled {
+        .el-checkbox__input {
+          .el-checkbox__inner {
+            @include border_color('checkbox_disabled_border_color');
+            @include background_color('checkbox_disabled_background_color');
+          }
+
+          +.el-checkbox__label {
+            @include font_color('checkbox_disabled_text_color');
+          }
+        }
+      }
+    }
+  }
+}

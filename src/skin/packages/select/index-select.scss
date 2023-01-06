@@ -1,0 +1,291 @@
+@import './../../handle.scss';
+body{
+  .bda-select{
+    .bda-scroll> .__panel{
+      @include background_color('select_default_backround_color');
+    }
+    .el-select__tags .bda-semicolon{
+      @include font_color('select_default_text_color');
+    }
+    .el-input .el-select__caret {
+      @include font_color('select_default_icon_color');
+    }
+    &.el-select-dropdown .bda-select-seach .bda-search-input .bda-input input{
+      @include border_color('selectSearch_border_color');
+    }
+    .el-input{
+      .el-input__inner{
+        @include background_color('select_default_backround_color');
+        @include border_color('select_default_border_color');
+        @include font_color('select_default_text_color');
+      }
+      .el-input__inner:hover{
+        @include border_color('select_border_hover_color');
+      }
+      &.is-disabled .el-input__inner{
+        @include background_color('select_disabled_background_color');
+        @include font_color('select_disabled_text_color');
+        @include border_color('select_disabled_border_color');
+      }
+      // 占位
+      .el-input__inner {
+        &::-webkit-input-placeholder {
+          @include font_color('placeholder_text_color');
+        }
+        &:-ms-input-placeholder {
+          @include font_color('placeholder_text_color');
+        }
+      }
+      &.is-disabled .el-input__suffix .el-input__suffix-inner .el-select__caret.el-input__icon.el-icon-arrow-up{
+        @include font_color('select_disabled_text_color');
+      }
+    }
+    .el-input:hover.is-disabled .el-input__inner{
+      @include background_color('select_disabled_background_color');
+      @include font_color('select_disabled_text_color');
+      @include border_color('select_disabled_border_color');
+    }
+    .el-select__tags:hover + .el-input.is-disabled .el-input__inner{
+      @include background_color('select_disabled_background_color');
+      @include font_color('select_disabled_text_color');
+      @include border_color('select_disabled_border_color');
+    }
+    .el-scrollbar .el-scrollbar__thumb{
+      @include background_color('scroll_default_background_color');
+      &:hover {
+        @include background_color('scroll_hover_background_color');
+      }
+    }
+  }
+  // 下拉search border
+  .bda-dropdown.bda-scroll-select-dropdown .bda-select-seach .bda-search-input .bda-input input{
+    @include border_color('selectSearch_border_color');
+  }
+  .bda-tree-select {
+    // 禁用icon
+    .bda-select-input.is-disabled .bda-select-icon .el-icon-arrow-down{
+      @include font_color('select_disabled_text_color');
+    }
+    .bda-select-input:hover .bda-input .el-input__inner{
+      @include border_color('select_hover_color');
+    }
+    .bda-select-input.is-disabled .bda-input  .el-input__inner {
+      @include background_color('select_disabled_background_color');
+      @include border_color('select_disabled_border_color');
+      @include font_color('select_disabled_text_color');
+    }
+    .bda-select-input {
+    // bda-tree 图标
+      .bda-select-icon.bda-select-icon{
+        @include background_color('select_default_backround_color');
+      }
+      &.is-disabled .bda-select-icon.bda-select-icon{
+        @include background_color('select_disabled_background_color');
+      }
+      .bda-select-tag{
+        @include font_color('select_default_text_color');
+      }
+    }
+  }
+  .bda-scroll-select{
+    // 滚动边框
+    .bda-select-input:hover .bda-input .el-input__inner{
+      @include border_color('select_hover_color');
+    }
+    .bda-select-input .el-input__inner{
+      @include background_color('select_default_backround_color');
+      @include font_color('select_default_text_color');
+      @include border_color('select_default_border_color');
+    }
+    .el-input .el-input__inner{
+      @include background_color('select_default_backround_color');
+      @include font_color('select_default_text_color');
+      @include border_color('select_default_border_color');
+    }
+    // tag
+    .bda-select-input .bda-select-tag{
+      @include background_color('select_default_backround_color');
+      @include font_color('select_default_text_color');
+      @include border_color('select_default_border_color');
+    }
+    .bda-select-input.is-disabled .bda-input .el-input__inner{
+      @include background_color('select_disabled_background_color');
+      @include font_color('select_disabled_text_color');
+      @include border_color('select_disabled_border_color');
+    }
+    .bda-select-input.is-disabled  .el-input__inner{
+      @include background_color('select_disabled_background_color');
+      @include font_color('select_disabled_text_color');
+      @include border_color('select_disabled_border_color');
+    }
+    // 禁用icon背景色
+    .bda-select-input.is-disabled .bda-select-icon{
+      @include background_color('select_disabled_background_color');
+      .el-icon-arrow-down{
+        @include font_color('select_disabled_text_color');
+      }
+    }
+    &.is-disabled{
+      @include background_color('select_disabled_background_color');
+      .bda-select-tag{
+        @include background_color('select_disabled_background_color');
+        @include font_color('select_disabled_text_color');
+        @include border_color('select_disabled_border_color');
+      }
+    }
+  }
+
+
+  .bda-dropdown.bda-scroll-select-dropdown .bda-select-seach .bda-search-input .bda-input input {
+    @include border_color('select_default_border_color');
+  }
+  // select边框
+  .bda-select .el-select__tags:hover + .el-input .el-input__inner{
+    @include border_color('select_hover_color');
+  }
+  .bda-tree .bda-tree-body .el-tree .el-tree-node .el-tree-node__content.highlight-node > .tree-label-content .el-tree-node__label{
+    @include font_color('select_default_text_color');
+  }
+  // 多选
+  .bda-select.el-select-dropdown{
+    @include background_color('select_default_backround_color');
+    .el-select-group__wrap {
+      .el-select-group__title {
+        @include font_color('select_disabled_text_color')
+      }
+      &:not(:last-of-type) {
+        &::after {
+          @include background_color('selectOptionGroup_border_color');
+        }
+      }
+    }
+  }
+
+  .bda-select.el-select-dropdown.is-multiple .el-select-dropdown__item.selected {
+    @include background_color('select_default_backround_color');
+    @include font_color('select_selected_text_color')
+  }
+  .bda-option.el-select-dropdown__item:not(.is-disabled){
+    @include font_color('select_default_text_color');
+  }
+
+  .bda-dropdown.el-dropdown-menu.el-popper{
+    @include border_color('select_default_border_color');
+    @include font_color('select_default_text_color');
+    @include background_color('select_default_backround_color');
+    @include box_shadow('selectDropdown_box_shadow_val', 'selectDropdown_box_shadow_color');
+    .el-dropdown-menu__item{
+      @include font_color('select_default_text_color');
+      @include background_color('select_default_backround_color');
+      &.is-disabled{
+        @include font_color('select_disabled_text_color');
+      }
+    }
+    .empty-text {
+      span {
+        @include font_color('placeholder_text_color');
+      }
+    }
+  }
+  .bda-dropdown .bda-select-seach .bda-search-input .bda-input input {
+    @include border_color('select_default_border_color');
+  }
+  // 滚动下拉 options
+  .bda-dropdown.bda-dropdown.bda-scroll-select-dropdown.el-dropdown-menu{
+    @include border_color('select_default_border_color');
+    @include background_color('select_default_backround_color');
+    @include box_shadow('selectDropdown_box_shadow_val', 'selectDropdown_box_shadow_color');
+    .el-dropdown-menu__item{
+      @include font_color('select_default_text_color');
+      &.is-disabled{
+        @include font_color('disabled_text_color');
+      }
+    }
+    .empty-text {
+      span {
+        @include font_color('placeholder_text_color');
+      }
+    }
+  }
+  .bda-dropdown.bda-dropdown.bda-scroll-select-dropdown .el-scrollbar li.bda-scroll-option.is-checked{
+    @include font_color('select_selected_text_color');
+  }
+  .bda-scroll-select .bda-select-input .clearable, .bda-scroll-select .bda-select-input .el-icon-arrow-down{
+    @include font_color('select_default_icon_color');
+  }
+  .bda-dropdown.bda-dropdown.bda-scroll-select-dropdown .el-scrollbar .el-scrollbar__thumb{
+    @include background_color('scroll_default_background_color');
+    &:hover {
+      @include background_color('scroll_hover_background_color');
+    }
+  }
+  // 滚动组件
+  .bda-scroll-select .bda-select-input .bda-select-icon{
+    @include background_color('select_default_backround_color');
+  }
+  .bda-scroll-select .bda-select-input .bda-input.is-down .el-input__inner {
+    @include border_color("c_color");
+  }
+  .icon-bda-hover-close:hover{
+    @include border_color("c_color");
+  }
+  .bda-select .el-input.is-focus:not(.is-disabled) .el-input__inner {
+    @include border_color("c_color");
+  }
+  .bda-scroll-select .bda-select-input .clearable:hover {
+    @include font_color("c_color");
+  }
+  .bda-scroll-select .bda-select-input .bda-select-tag .tag-item {
+    .icon-bda-hover-close:hover{
+      @include font_color("c_color");
+    }
+
+  }
+  .bda-select .el-input__suffix .el-icon-circle-close:hover {
+    @include font_color("c_color");
+  }
+  .bda-tree-select{
+    .bda-select-input .bda-select-icon .clearable{
+      &:hover{
+        @include font_color("c_color");
+      }
+    }
+  }
+  .bda-tree-select .bda-select-input .bda-input.is-down .el-input__inner {
+    @include border_color("c_color");
+  }
+  .bda-dropdown {
+    .bda-select-seach i[class^=el-icon]:hover {
+      @include font_color('c_color')
+    }
+    .el-scrollbar li.bda-scroll-option:not(.is-disabled):hover {
+       @include background_color('selectScroll_hover_color');
+       @include font_color('selectScroll_hover_text_color');
+    }
+    .bda-scroll-option::after{
+      @include font_color('c_color')
+    }
+  }
+  .el-select-dropdown.bda-select {
+    @include border_color('selectDropdown_border_color');
+    @include box_shadow('selectDropdown_box_shadow_val', 'selectDropdown_box_shadow_color');
+    .el-select-dropdown__item.selected{
+      @include font_color('c_color');
+    }
+    .bda-option:not(.is-disabled) {
+      &:hover, .hover {
+        @include background_color('selectScroll_hover_color');
+        @include font_color('selectScroll_hover_text_color')
+      }
+    }
+    .bda-option.is-disabled {
+      @include font_color('disabled_text_color');
+    }
+    .empty-text {
+      span {
+        @include font_color('placeholder_text_color');
+      }
+    }
+  }
+
+}

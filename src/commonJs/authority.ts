@@ -3,7 +3,7 @@ const Cookies = require("js-cookie");
 
 const TOKEN_KEY = "TOKEN_KEY";
 
-const setToken = (token: string, cookieExpires: any) => {
+const setToken = (token: string, cookieExpires: number | Date) => {
   Cookies.set(TOKEN_KEY, token, { expires: cookieExpires || 1 });
 };
 

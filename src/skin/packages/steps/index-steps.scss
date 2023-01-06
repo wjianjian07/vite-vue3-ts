@@ -1,0 +1,20 @@
+@import './../../handle.scss';
+body{
+  .bda-step{
+    .bda-step-head{
+      .bda-step-line{
+        @include background_color('setpLine_background_color');
+      }
+      .bda-step-icon{
+        @include background_color('stepsIcon_background_color');
+        @include border_color('stepsIcon_border_color');
+        @include font_color('stepsIcon_text_color');
+      }
+    }
+    &.is-current .bda-step-icon{
+      @include background_color('c_color');
+      @include border_color('c_color');
+      @include font_color('setp_isCurrent_text_color');
+    }
+  }
+}

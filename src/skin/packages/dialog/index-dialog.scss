@@ -1,0 +1,39 @@
+@import './../../handle.scss';
+
+body {
+  .bda-dialog .el-dialog__body {
+    @include font_color('dialog_body_text_color');
+    @include border_radius('dialog_border_radius');
+  }
+
+  .bda-dialog .el-dialog {
+    @include background_color('dialog_background_color');
+
+    .el-dialog__header, .el-dialog__footer {
+      @include border_color('dialog_border_color')
+    }
+  }
+
+  .bda-dialog .el-dialog__header .bda-dialog-header .bda-dialog-header-title {
+    @include font_color('dialog_header_title_color')
+  }
+
+  .bda-dialog .el-dialog__header .bda-dialog-header .bda-dialog-header-icon .bda-dialog-header-title {
+    @include font_color('c_color');
+  }
+
+  .bda-dialog .el-dialog__header .el-dialog__headerbtn i.el-dialog__close {
+    @include font_color('dialog_header_close_icon_color');
+    &:hover {
+      @include font_color('c_color');
+    }
+  }
+
+  .v-modal {
+    @include background_color('dialog_modal_background_color');
+  }
+
+  .bda-dialog .el-dialog {
+    @include box_shadow('dialog_box_shadow_val', 'dialog_box_shadow_color');
+  }
+}

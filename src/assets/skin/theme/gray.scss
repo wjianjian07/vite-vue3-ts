@@ -1,0 +1,5 @@
+@import '../module/common/gray-common.scss';
+@import '../module/portal/gray-portal.scss';
+
+$gray:$gray-common;
+$gray:map-merge($gray, $gray-portal);
