@@ -1,17 +1,18 @@
 // index.ts
 import axios, { AxiosResponse } from "axios";
-import { getToken, delToken } from "../commonJs/authority";
-import router from "../router";
+import { getToken } from "../commonJs/authority";
+import loading from "./loading";
+import { deepClone } from "../commonJs";
+import { showMsg, showCodeMsg, getErrResultData } from "./httpError";
 import type { AxiosInstance, AxiosRequestConfig } from "axios";
 import type { RequestConfig, RequestInterceptors } from "./types";
-
-import { ElMessage, ElMessageBox } from "element-plus";
 
 const TIME_OUT: number = 10 * 1000;
 
 class Request {
   // axios 实例
   instance: AxiosInstance;
+  clsLoading: loading;
   // 拦截器对象
   interceptorsObj?: RequestInterceptors;
 
@@ -19,8 +20,11 @@ class Request {
     const baseConfig = {
       baseURL: import.meta.env.VITE_BASE_URL,
       timeout: TIME_OUT,
+      xsrfCookieName: "csrftoken", // 防止xxs攻击
+      xsrfHeaderName: "X-CSRFToken", // 防止xxs攻击
       ...config,
     };
+    this.clsLoading = new loading(TIME_OUT);
     this.instance = axios.create(baseConfig);
     this.interceptorsObj = config.interceptors;
 
@@ -69,9 +73,9 @@ class Request {
       },
       (error: any) => {
         let msg; //错误信息
-        let status = error.response.status; //错误状态
+        let status = error.response?.status; //错误状态
 
-        if (error.response.data.code === undefined)
+        if (error.response?.data?.code === undefined)
           console.log("response err:\n" + JSON.stringify(error.response));
 
         if (error.response) {
@@ -101,6 +105,8 @@ class Request {
 
   request(config: RequestConfig): Promise<any> {
     return new Promise((resolve, reject) => {
+      // 开启loading状态
+      this.clsLoading.openLoading();
       // 如果我们为单个请求设置拦截器，这里使用单个请求的拦截器
       if (config.interceptors?.requestInterceptors) {
         config = config.interceptors.requestInterceptors(config);
@@ -112,93 +118,45 @@ class Request {
           if (config.interceptors?.responseInterceptors) {
             res = config.interceptors.responseInterceptors(res);
           }
-
           resolve(res);
         })
         .catch((err: any) => {
           reject(err);
+        })
+        .finally(() => {
+          // 关闭loading状态
+          this.clsLoading.closeLoading();
         });
     });
   }
 }
 
-function getErrResultData(code: number, msg: string) {
-  return {
-    code: code,
-    msg: msg,
-    success: false,
-    data: null,
-  };
-}
-
-function showCodeMsg(code: number, msg: string) {
-  if (code === 401) {
-    process401();
-    return Promise.reject("无效/过期的会话，请重新登录。");
-  } else if (code === 400) {
-    showMsg(msg, 30, "客户端错误");
-  } else if (code === 403) {
-    showMsg(msg || "权限不足");
-  } else if (code === 404) {
-    showMsg(msg || "请求不存在");
-  } else if (code === 500) {
-    showMsg(msg, 30, "服务器异常");
-  } else if (code === 501) {
-    showMsg(msg || "您的操作被取消或不允许提交");
-  } else {
-    showMsg(msg, 30, "其他异常");
-  }
-}
-/**
- * 显示信
- *
- * @param msg 主信息
- * @param duration 停留时间，秒。不输入或null默认30
- * @param auxMsg 小字号显示的附加信息
- * @param data 携带数据
- */
-function showMsg(
-  msg: string,
-  duration: number = 10,
-  auxMsg: string = "",
-  data: string = ""
-) {
-  const hasData = data != null && data !== "";
-  const hasAuxMsg = auxMsg != null && auxMsg !== "";
-  let message = "<p><strong>" + msg + "</strong></p>";
-  if (hasData)
-    message +=
-      "<br/><p><small>返回数据:" + JSON.stringify(data) + "</small></p>";
-  if (hasAuxMsg) message += "<br/><small><i>" + auxMsg + "</i></small>";
-  if (duration == null) duration = 30000;
-  else duration = duration * 1000;
-  ElMessage({
-    duration: duration,
-    showClose: true,
-    message: message,
-    grouping: true,
-    type: "error",
-    dangerouslyUseHTMLString: true,
-  });
-}
-
-function process401() {
-  ElMessageBox.confirm("无效/过期的服务器访问，请重新登录。", "确定登出", {
-    confirmButtonText: "重新登录",
-    cancelButtonText: "取消",
-    type: "warning",
-  }).then(() => {
-    delToken(); //删除token
-    router.push("login");
-
-    // logout().then(() => {
-    //     location.reload()// 重实例化router
-    // })
-  });
-}
-
 function request(config: RequestConfig) {
-  return new Request(config);
+  const httpServer = new Request(config);
+  return httpServer.request(config);
 }
 
-export default request;
+function requestGet(config: RequestConfig) {
+  config.headers = config.headers ? config.headers : {};
+  config.method = config.method ? config.method : "GET";
+  if (config.params) {
+    const params = deepClone(config.params);
+    Object.keys(params).forEach((item) => {
+      if (params[item] === null) {
+        delete params[item];
+      }
+    });
+  }
+  const httpServer = new Request(config);
+  return httpServer.request(config);
+}
+
+function requestPost(config: RequestConfig) {
+  config.headers = config.headers ? config.headers : {};
+  config.method = config.method ? config.method : "POST";
+  config.data = config.data ? config.data : {};
+  const httpServer = new Request(config);
+  return httpServer.request(config);
+}
+
+export { request, requestGet, requestPost };

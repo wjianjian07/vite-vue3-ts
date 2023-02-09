@@ -1,4 +1,5 @@
-const Cookies = require("js-cookie");
+// const Cookies = require("js-cookie");
+import Cookies from "js-cookie";
 // cookie保存的天数
 
 const TOKEN_KEY = "TOKEN_KEY";

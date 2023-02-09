@@ -1,11 +1,11 @@
-let url = "http://xxxxxxxxxxxx"
+let url = "http://172.16.168.10:8081";
 
 module.exports = {
   proxy: {
     "/api": {
       target: url,
       changeOrigin: true,
-      rewrite: (path) => path.replace(/^\/api/, '')
+      rewrite: (path: string) => path.replace(/^\/api/, ""),
     },
   },
-}
+};

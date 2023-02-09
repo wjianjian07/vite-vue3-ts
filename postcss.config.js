@@ -8,7 +8,8 @@ module.exports = {
         'opera >= 11.5',   //兼容opera版本号大于11.5浏览器
         'Android >= 4.0',
         'iOS >= 8',
-      ]
+      ],
+      grid: true
     },
     'tailwindcss': {}
     // 转换像素单位使用（适合移动端、混合app等）

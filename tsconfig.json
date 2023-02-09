@@ -13,16 +13,29 @@
     "types": [
       "vite/client"
     ],
+    // 引入时默认路径
+    "baseUrl": "./",
+    // ts校验路径
+    "paths": {
+      "/@/*": [
+        "src/*"
+      ]
+    }
   },
   // 配置需要校验的文件
   "include": [
     "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "**/*.ts",
+    "**/*.tsx",
     "src/**/*.js",
     "src/**/*.vue",
     "tailwind.config.js"
   ],
   // 排除不需要 TypeScript 校验的文件
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist"
   ]
 }

@@ -1,14 +1,14 @@
 import { defineConfig } from "vite";
 import { resolve } from "path";
 import vue from '@vitejs/plugin-vue';
-import postcssImport from "postcss-import"
+import postcssImport from "postcss-import" //自动添加浏览器前缀
 import autoprefixer from "autoprefixer" //css前缀，用于兼容
 import tailwindcss from "tailwindcss" //优化css，打包删除未使用到的样式
 import viteCompression from 'vite-plugin-compression'; //打包代码压缩
 const inter = require("./proxy.ts")
 
 function pathResolve(dir) {
-  return resolve(__dirname, ".", dir);
+  return resolve(__dirname, dir);
 }
 
 const port = 8086

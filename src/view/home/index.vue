@@ -1,10 +1,16 @@
 <script setup lang="ts">
-import { reactive, ref } from "vue";
+import { onMounted, reactive, ref } from "vue";
+import { requestGet } from "@/server"
 
 defineProps({
   msg: String,
 });
 let skinIndex = ref(0)
+onMounted(() => {
+  requestGet({ url: 'asdasd?a=你好啊' }).then((res: any) => {
+    console.log(res, 'ertgergerger')
+  })
+})
 const setSkin = (index: number, e: string) => {
   // let personalConfigs=[...this.skinTheme];
   // if(personalConfigs.length==0){
@@ -62,6 +68,8 @@ const setSkin = (index: number, e: string) => {
 @import './../../assets/skin/handle.scss';
 
 .home {
+  height: 100%;
+
   .setting-skin {
     background-color: #eee;
     @include background_color("setting_header_background_color");
@@ -76,7 +84,7 @@ const setSkin = (index: number, e: string) => {
 
     .setting-skin-title {
       font-size: 12px;
-      color: grey;
+      // color: grey;
       margin-right: 10px;
     }
 
@@ -142,9 +150,5 @@ const setSkin = (index: number, e: string) => {
       }
     }
   }
-
-  // .text-value {
-  //   @include font_color("c_color");
-  // }
 }
 </style>
