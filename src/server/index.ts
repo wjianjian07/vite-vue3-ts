@@ -6,6 +6,7 @@ import { deepClone } from "../commonJs";
 import { showMsg, showCodeMsg, getErrResultData } from "./httpError";
 import type { AxiosInstance, AxiosRequestConfig } from "axios";
 import type { RequestConfig, RequestInterceptors } from "./types";
+import { ResultEnum } from "@/enums/httpEnum";
 
 const TIME_OUT: number = 10 * 1000;
 
@@ -61,7 +62,7 @@ class Request {
           if (res.code !== undefined && res.msg !== undefined) {
             //result.data.code为错误代码
             if (result.status !== 200 || res.code !== 200 || !res.success) {
-              const code = res.code;
+              const code: ResultEnum = res.code;
               const msg = res.msg || "请联系管理员解决";
               showCodeMsg(code, msg);
               // return Promise.reject(msg);
@@ -103,10 +104,10 @@ class Request {
     );
   }
 
-  request(config: RequestConfig): Promise<any> {
+  request(config: RequestConfig, userConfig: Indexable = {}): Promise<any> {
     return new Promise((resolve, reject) => {
       // 开启loading状态
-      this.clsLoading.openLoading();
+      userConfig.loading && this.clsLoading.openLoading();
       // 如果我们为单个请求设置拦截器，这里使用单个请求的拦截器
       if (config.interceptors?.requestInterceptors) {
         config = config.interceptors.requestInterceptors(config);
@@ -125,7 +126,7 @@ class Request {
         })
         .finally(() => {
           // 关闭loading状态
-          this.clsLoading.closeLoading();
+          userConfig.loading && this.clsLoading.closeLoading();
         });
     });
   }
@@ -136,7 +137,7 @@ function request(config: RequestConfig) {
   return httpServer.request(config);
 }
 
-function requestGet(config: RequestConfig) {
+function requestGet(config: RequestConfig, userConfig: Indexable = {}) {
   config.headers = config.headers ? config.headers : {};
   config.method = config.method ? config.method : "GET";
   if (config.params) {
@@ -148,15 +149,15 @@ function requestGet(config: RequestConfig) {
     });
   }
   const httpServer = new Request(config);
-  return httpServer.request(config);
+  return httpServer.request(config, userConfig);
 }
 
-function requestPost(config: RequestConfig) {
+function requestPost(config: RequestConfig, userConfig: Indexable = {}) {
   config.headers = config.headers ? config.headers : {};
   config.method = config.method ? config.method : "POST";
   config.data = config.data ? config.data : {};
   const httpServer = new Request(config);
-  return httpServer.request(config);
+  return httpServer.request(config, userConfig);
 }
 
 export { request, requestGet, requestPost };

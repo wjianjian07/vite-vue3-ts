@@ -7,7 +7,7 @@ defineProps({
 });
 let skinIndex = ref(0)
 onMounted(() => {
-  requestGet({ url: 'asdasd?a=你好啊' }).then((res: any) => {
+  requestGet({ url: 'asdasd?a=你好啊' }, { loading: true }).then((res: any) => {
     console.log(res, 'ertgergerger')
   })
 })

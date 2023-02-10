@@ -1,29 +1,35 @@
+import { App } from "vue";
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
+import { basicRoutes } from "./routes";
+// 白名单 基本静态路由
+const WHITE_NAME_LIST: string[] = [];
 
-const routes: Array<RouteRecordRaw> = [
-  {
-    path: "/",
-    name: "home",
-    component: () => import("@/view/home/index.vue"),
-  },
-  {
-    path: "/login",
-    name: "login",
-    component: () => import("@/view/login.vue"),
-  },
-];
+const getRouteNames = (array: any[]) =>
+  array.forEach((item) => {
+    WHITE_NAME_LIST.push(item.name);
+    getRouteNames(item.children || []);
+  });
 
+// app router
 const router = createRouter({
   history: createWebHashHistory(),
-  routes,
+  routes: basicRoutes as unknown as RouteRecordRaw[],
+  strict: true,
+  scrollBehavior: () => ({ left: 0, top: 0 }),
 });
 
-router.beforeEach((to, from) => {
-  // 路由守卫逻辑
+// reset router 如果当前用户没权限则删除路由
+export function resetRouter() {
+  router.getRoutes().forEach((route) => {
+    const { name } = route;
+    if (name && !WHITE_NAME_LIST.includes(name as string)) {
+      router.hasRoute(name) && router.removeRoute(name);
+    }
+  });
+}
+// config router
+export function setupRouter(app: App<Element>) {
+  app.use(router);
+}
 
-  // 通过 return turn;
-  // 不通过 return false;
-  return true;
-});
-
-export default router;
+export default router
