@@ -10,8 +10,10 @@
     "jsx": "preserve",
     "moduleResolution": "node",
     "skipLibCheck": true, // 针对element-puls的ts打包校验
+    "allowSyntheticDefaultImports": true, // 针对插件 export = 导出时， 默认import 获取的 export default
     "types": [
-      "vite/client"
+      "vite/client",
+      "pinia-plugin-persist"
     ],
     // 引入时默认路径
     "baseUrl": "./",

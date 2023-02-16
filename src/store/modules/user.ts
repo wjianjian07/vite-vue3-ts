@@ -1,23 +1,32 @@
+import { RoleEnum } from "@/enums/roleEnum";
 import { defineStore } from "pinia";
+import { UserInfo, UserState } from "types/store";
+import store from "..";
 
 export const userStore = defineStore({
   id: "user", // id是唯一的，如果有多个文件，ID不能重复
-  state: () => {
+  state: (): UserState => {
     return {
-      account: "",
+      userInfo: null,
       token: "",
+      roleList: [],
     };
   },
+  getters: {
+    getRoleList(): RoleEnum[] {
+      return this.roleList.length > 0 ? this.roleList : [];
+    },
+  },
   actions: {
-    setInfo(data: string) {
-      this.account = data;
+    setInfo(data: UserInfo) {
+      this.userInfo = data;
     },
     setBankType(data: string) {
       this.token = data;
     },
     // 用户退出，清除本地数据
     logout() {
-      this.account = "";
+      this.userInfo = null;
       sessionStorage.clear();
       localStorage.clear();
     },
@@ -34,3 +43,8 @@ export const userStore = defineStore({
     ],
   },
 });
+
+// Need to be used outside the setup
+export function useUserStoreWithOut() {
+  return userStore(store);
+}

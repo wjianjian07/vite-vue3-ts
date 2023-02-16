@@ -1,15 +1,18 @@
+import _ from "lodash";
 import { AppRouteModule, AppRouteRecordRaw } from "../types";
+import { PAGE_NOT_FOUND_ROUTE } from "./basic";
 
 const modules = import.meta.globEager("./modules/**/*.ts");
 const routeModuleList: AppRouteModule[] = [];
 
-Object.keys(modules).forEach((key) => {
+_(Object.keys(modules)).forEach((key) => {
   const mod = modules[key].default || {};
-  const modList = Array.isArray(mod) ? [...mod] : [mod];
+  const modList = _.isArray(mod) ? [...mod] : [mod];
   routeModuleList.push(...modList);
 });
 
 console.log(modules, routeModuleList, "modules");
+export const asyncRoutes = [PAGE_NOT_FOUND_ROUTE, ...routeModuleList];
 
 const RootRoute: AppRouteRecordRaw = {
   path: "/",
@@ -34,5 +37,5 @@ export const basicRoutes = [
   RootRoute,
   // ...mainOutRoutes,
   // REDIRECT_ROUTE,
-  // PAGE_NOT_FOUND_ROUTE,
+  PAGE_NOT_FOUND_ROUTE,
 ];

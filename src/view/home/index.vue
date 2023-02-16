@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, reactive, ref } from "vue";
+import { ThemeEnum } from "@/enums/appEnum";
 import { requestGet } from "@/server"
 
 defineProps({
@@ -7,11 +7,11 @@ defineProps({
 });
 let skinIndex = ref(0)
 onMounted(() => {
-  requestGet({ url: 'asdasd?a=你好啊' }, { loading: true }).then((res: any) => {
+  requestGet({ url: 'asdasd?a=你好啊' },).then((res: any) => {
     console.log(res, 'ertgergerger')
   })
 })
-const setSkin = (index: number, e: string) => {
+const setSkin = (index: number, e: ThemeEnum) => {
   // let personalConfigs=[...this.skinTheme];
   // if(personalConfigs.length==0){
   //   personalConfigs.push({
@@ -48,13 +48,16 @@ const setSkin = (index: number, e: string) => {
       <span class="setting-skin-title">切换主题</span>
       <div class="right-toggle">
         <i style="visibility: hidden" class="iconfont icon-bda-back-old backBtn el-tooltip"></i>
-        <div v-bind:class="{ 'skin-item': true, 'skin-item-active': skinIndex == 0 }" v-on:click="setSkin(0, 'blue')">
+        <div v-bind:class="{ 'skin-item': true, 'skin-item-active': skinIndex == 0 }"
+          v-on:click="setSkin(0, ThemeEnum.BLUE)">
           <span class="skin skin-white"></span>
         </div>
-        <div v-bind:class="{ 'skin-item': true, 'skin-item-active': skinIndex == 1 }" v-on:click="setSkin(1, 'green')">
+        <div v-bind:class="{ 'skin-item': true, 'skin-item-active': skinIndex == 1 }"
+          v-on:click="setSkin(1, ThemeEnum.GREEN)">
           <span class="skin skin-green"></span>
         </div>
-        <div v-bind:class="{ 'skin-item': true, 'skin-item-active': skinIndex == 2 }" v-on:click="setSkin(2, 'gray')">
+        <div v-bind:class="{ 'skin-item': true, 'skin-item-active': skinIndex == 2 }"
+          v-on:click="setSkin(2, ThemeEnum.GRAY)">
           <span class="skin skin-blue"></span>
         </div>
       </div>

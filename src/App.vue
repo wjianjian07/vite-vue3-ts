@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { ref, reactive, onMounted, defineComponent } from "vue";
 import treeEcharts from './echarts/treeEcharts.vue'
 defineComponent(() => {
   treeEcharts
 })
 
-const loading = ref(true)
+// const loading = ref(true)
 
 onMounted(() => {
 
@@ -13,14 +12,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <div id="app" class="app-panel" v-show="loading">
+  <div id="app" class="app-panel">
     <!-- <treeEcharts></treeEcharts> -->
-    <router-view class="bda-ui" />
+    <routerView class="bda-ui" />
   </div>
 </template>
 
 <style lang="scss" scoped>
-::v-deep #app {
+::v-deep(#app) {
   .bda-ui {
     overflow: hidden;
     height: 100%;

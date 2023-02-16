@@ -4,6 +4,7 @@ import vue from '@vitejs/plugin-vue';
 import postcssImport from "postcss-import" //自动添加浏览器前缀
 import autoprefixer from "autoprefixer" //css前缀，用于兼容
 import tailwindcss from "tailwindcss" //优化css，打包删除未使用到的样式
+import AutoImport from "unplugin-auto-import/vite" //自动引入vue api
 import viteCompression from 'vite-plugin-compression'; //打包代码压缩
 const inter = require("./proxy.ts")
 
@@ -16,11 +17,15 @@ export default defineConfig({
   base: "./",
   plugins: [
     vue(),
+    AutoImport({
+      imports: ['vue', 'vue-router'],//自动引入vue的ref、toRefs、onmounted等，无需在页面中再次引入
+      dts: "types/auto-import.d.ts" // 生成在src路径下名为auto-import.d.ts的声明文件
+    }),
     viteCompression({
       //生成压缩包gz
       verbose: true, // 输出压缩成功
       disable: false, // 是否禁用
-      threshold: 1, // 体积大于阈值会被压缩，单位是b
+      threshold: 500 * 1024, // 体积大于阈值会被压缩，单位是b // 1024 * 1024 = 1Mb
       algorithm: 'gzip', // 压缩算法
       ext: '.gz',// 生成的压缩包后缀
     })
