@@ -6,9 +6,13 @@ body {
   span {
     @include font_color('c_color');
   }
+
+  // svg {
+  //   @include font_color('c_color')
+  // }
 }
 
-.bda-loading {
+.el-loading {
   display: inline-block;
   font-size: 36px !important;
   animation: icon-spin 1s steps(8) infinite;

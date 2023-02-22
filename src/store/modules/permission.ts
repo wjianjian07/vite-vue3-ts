@@ -9,14 +9,14 @@ import { asyncRoutes } from "@/router/routes";
 import { PermissionModeEnum } from "@/enums/appEnum";
 
 const projectSetting = {
-  permissionMode: PermissionModeEnum.ROUTE_MAPPING
-}
+  permissionMode: PermissionModeEnum.ROUTE_MAPPING,
+};
 // import projectSetting from '/@/settings/projectSetting';
 
 // import { PermissionModeEnum } from '/@/enums/appEnum';
 
 import { PAGE_NOT_FOUND_ROUTE } from "@/router/routes/basic";
-
+import { ACTIONSNAME } from "../actionsName";
 
 interface PermissionState {
   // Permission code list
@@ -60,7 +60,7 @@ export const usePermissionStore = defineStore({
     },
   },
   actions: {
-    resetState(): void {
+    [ACTIONSNAME.PERMISSION.RESET_STATE](): void {
       this.isDynamicAddedRoute = false;
       // this.permCodeList = [];
       // this.backMenuList = [];
@@ -71,14 +71,15 @@ export const usePermissionStore = defineStore({
     //   this.setPermCodeList(codeList);
     // },
     //: Promise<AppRouteRecordRaw[]>
-    async buildRoutesAction() {
+    async [ACTIONSNAME.PERMISSION.BUILD_ROUTES_ACTION]() {
       // const { t } = useI18n();
       const userStore = useUserStoreWithOut();
       const appStore = useAppStoreWithOut();
 
       let routes: AppRouteRecordRaw[] = [];
       const roleList = toRaw(userStore.getRoleList) || [];
-      const { permissionMode = projectSetting.permissionMode } = appStore.getProjectConfig;
+      const { permissionMode = projectSetting.permissionMode } =
+        appStore.getProjectConfig;
 
       // 根据身份权限过滤路由
       const routeFilter = (route: AppRouteRecordRaw) => {
@@ -124,63 +125,63 @@ export const usePermissionStore = defineStore({
       //     return;
       //   };
 
-        switch (permissionMode) {
-          case PermissionModeEnum.ROLE:
-            routes = filter(asyncRoutes, routeFilter);
-            routes = routes.filter(routeFilter);
-            // Convert multi-level routing to level 2 routing
-            // routes = flatMultiLevelRoutes(routes);
-            break;
+      switch (permissionMode) {
+        case PermissionModeEnum.ROLE:
+          routes = filter(asyncRoutes, routeFilter);
+          routes = routes.filter(routeFilter);
+          // Convert multi-level routing to level 2 routing
+          // routes = flatMultiLevelRoutes(routes);
+          break;
 
-          case PermissionModeEnum.ROUTE_MAPPING:
-            routes = filter(asyncRoutes, routeFilter);
-            routes = routes.filter(routeFilter);
-            // const menuList = transformRouteToMenu(routes, true);
-            routes = filter(routes, routeRemoveIgnoreFilter);
-            routes = routes.filter(routeRemoveIgnoreFilter);
-            // menuList.sort((a, b) => {
-            //   return (a.meta?.orderNo || 0) - (b.meta?.orderNo || 0);
-            // });
+        case PermissionModeEnum.ROUTE_MAPPING:
+          routes = filter(asyncRoutes, routeFilter);
+          routes = routes.filter(routeFilter);
+          // const menuList = transformRouteToMenu(routes, true);
+          routes = filter(routes, routeRemoveIgnoreFilter);
+          routes = routes.filter(routeRemoveIgnoreFilter);
+          // menuList.sort((a, b) => {
+          //   return (a.meta?.orderNo || 0) - (b.meta?.orderNo || 0);
+          // });
 
-            // this.setFrontMenuList(menuList);
-            // Convert multi-level routing to level 2 routing
-            // routes = flatMultiLevelRoutes(routes);
-            break;
+          // this.setFrontMenuList(menuList);
+          // Convert multi-level routing to level 2 routing
+          // routes = flatMultiLevelRoutes(routes);
+          break;
 
-          //  If you are sure that you do not need to do background dynamic permissions, please comment the entire judgment below
-          // case PermissionModeEnum.BACK:
-          //   const { createMessage } = useMessage();
+        //  If you are sure that you do not need to do background dynamic permissions, please comment the entire judgment below
+        // case PermissionModeEnum.BACK:
+        //   const { createMessage } = useMessage();
 
-          //   createMessage.loading({
-          //     content: t('sys.app.menuLoading'),
-          //     duration: 1,
-          //   });
+        //   createMessage.loading({
+        //     content: t('sys.app.menuLoading'),
+        //     duration: 1,
+        //   });
 
-          //   // !Simulate to obtain permission codes from the background,
-          //   // this function may only need to be executed once, and the actual project can be put at the right time by itself
-          //   let routeList: AppRouteRecordRaw[] = [];
-          //   try {
-          //     this.changePermissionCode();
-          //     routeList = (await getMenuList()) as AppRouteRecordRaw[];
-          //   } catch (error) {
-          //     console.error(error);
-          //   }
+        //   // !Simulate to obtain permission codes from the background,
+        //   // this function may only need to be executed once, and the actual project can be put at the right time by itself
+        //   let routeList: AppRouteRecordRaw[] = [];
+        //   try {
+        //     this.changePermissionCode();
+        //     routeList = (await getMenuList()) as AppRouteRecordRaw[];
+        //   } catch (error) {
+        //     console.error(error);
+        //   }
 
-          //   // Dynamically introduce components
-          //   routeList = transformObjToRoute(routeList);
+        //   // Dynamically introduce components
+        //   routeList = transformObjToRoute(routeList);
 
-          //   //  Background routing to menu structure
-          //   const backMenuList = transformRouteToMenu(routeList);
-          //   this.setBackMenuList(backMenuList);
+        //   //  Background routing to menu structure
+        //   const backMenuList = transformRouteToMenu(routeList);
+        //   this.setBackMenuList(backMenuList);
 
-          //   // remove meta.ignoreRoute item
-          //   routeList = filter(routeList, routeRemoveIgnoreFilter);
-          //   routeList = routeList.filter(routeRemoveIgnoreFilter);
+        //   // remove meta.ignoreRoute item
+        //   routeList = filter(routeList, routeRemoveIgnoreFilter);
+        //   routeList = routeList.filter(routeRemoveIgnoreFilter);
 
-          //   routeList = flatMultiLevelRoutes(routeList);
-          //   routes = [PAGE_NOT_FOUND_ROUTE, ...routeList];
-          //   break;
-        }
+        //   routeList = flatMultiLevelRoutes(routeList);
+        //   routes = [PAGE_NOT_FOUND_ROUTE, ...routeList];
+        //   break;
+      }
 
       //   routes.push(ERROR_LOG_ROUTE);
       //   patchHomeAffix(routes);

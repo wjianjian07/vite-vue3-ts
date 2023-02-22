@@ -12,6 +12,7 @@ import { ProjectConfig } from "types/store";
 import store from "..";
 import { ThemeEnum } from "@/enums/appEnum";
 import { resetRouter } from "@/router";
+import { ACTIONSNAME } from "../actionsName";
 
 // import { defineStore } from 'pinia';
 // import { store } from '/@/store';
@@ -71,7 +72,7 @@ export const useAppStore = defineStore({
     // },
   },
   actions: {
-    setPageLoading(loading: boolean): void {
+    [ACTIONSNAME.APP.SET_PAGE_LOADING](loading: boolean): void {
       this.pageLoading = loading;
     },
 
@@ -89,12 +90,14 @@ export const useAppStore = defineStore({
     //   Persistent.setLocal(PROJ_CFG_KEY, this.projectConfig);
     // },
 
-    async resetAllState() {
+    async [ACTIONSNAME.APP.RESET_ALL_STATE]() {
       resetRouter();
       // Persistent.clearAll();
       localStorage.clear(), sessionStorage.clear();
     },
-    async setPageLoadingAction(loading: boolean): Promise<void> {
+    async [ACTIONSNAME.APP.SET_PAGELOADING_ACTION](
+      loading: boolean
+    ): Promise<void> {
       if (loading) {
         clearTimeout(timeId);
         // Prevent flicker

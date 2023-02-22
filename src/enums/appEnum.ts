@@ -5,6 +5,7 @@ export enum ThemeEnum {
   BLUE = 'blue',
   GREEN = 'green',
   GRAY = 'gray',
+  OABLUE = 'oaBlue'
 }
 /**
  * 权限模式

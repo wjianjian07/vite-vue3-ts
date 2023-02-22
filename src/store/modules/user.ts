@@ -2,6 +2,7 @@ import { RoleEnum } from "@/enums/roleEnum";
 import { defineStore } from "pinia";
 import { UserInfo, UserState } from "types/store";
 import store from "..";
+import { ACTIONSNAME } from "../actionsName";
 
 export const userStore = defineStore({
   id: "user", // id是唯一的，如果有多个文件，ID不能重复
@@ -18,14 +19,14 @@ export const userStore = defineStore({
     },
   },
   actions: {
-    setInfo(data: UserInfo) {
+    [ACTIONSNAME.USER.SET_INFO](data: UserInfo) {
       this.userInfo = data;
     },
-    setBankType(data: string) {
+    [ACTIONSNAME.USER.SET_BANK_TYPE](data: string) {
       this.token = data;
     },
     // 用户退出，清除本地数据
-    logout() {
+    [ACTIONSNAME.USER.LOGOUT]() {
       this.userInfo = null;
       sessionStorage.clear();
       localStorage.clear();

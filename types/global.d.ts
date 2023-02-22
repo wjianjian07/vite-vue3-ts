@@ -1,4 +1,8 @@
 // declare global {
+  interface Window {
+    $systemList: any[]
+  }
+// }
 declare type Recordable<T = any> = Record<string, T>;
 declare type ReadonlyRecordable<T = any> = {
   readonly [key: string]: T;
@@ -7,7 +11,7 @@ declare type ReadonlyRecordable<T = any> = {
 declare type Indexable<T = any> = {
   [key: string]: T;
 };
-declare type Nullable<T> = T | null;
+declare type Nullable<T = any> = T | null;
 
 declare interface ViteEnv {
   readonly VITE_APP_TITLE: string;
@@ -17,4 +21,4 @@ declare interface ViteEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
-// }
+

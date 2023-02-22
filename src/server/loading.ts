@@ -1,5 +1,5 @@
 import { ElLoading } from "element-plus";
-// import { clearTimeout, setTimeout } from "timers";
+import { getSeriesColor } from 'utils/index'
 
 /**
  * 加载层及提示
@@ -8,7 +8,6 @@ class Loading {
   time: number;
   timer: any;
   loading: any;
-  // clearTimeout: any;
   openLoading: () => void;
   closeLoading: () => void;
   /**
@@ -23,9 +22,10 @@ class Loading {
       this.loading = ElLoading.service({
         lock: true,
         text: "",
-        // spinner: "icon iconfont icon-bda-loading bda-loading",
+        spinner: 'icon iconfont icon-bda-loading bda-loading',
+        background: getSeriesColor("main_panel_background_color", 0.6),
         // spinner: "el-icon-loading",
-        background: "#f0f6fa",
+        // background: "#f0f6fa",
       });
       if (this.timer) {
         this.timer.clearTimeout(this.timer);

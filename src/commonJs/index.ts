@@ -1,3 +1,5 @@
+import { colorObj } from "./themeColor";
+
 /**
  * @description 转化为rgb
  * @param {String} color 16进制颜色值
@@ -30,16 +32,54 @@ const colorToRgb = (color: string, opacity: number): string => {
 };
 
 /**
+ * @description 获取系列颜色
+ * @param {参数类型} name 对应颜色字段
+ * @param {参数类型} opacity 透明度，设置了值会转化成rgba
+ * @return {返回值类型} color 返回浅、暗系列颜色
+ */
+const getSeriesColor = (name: string, opacity: number) => {
+  const htmlTheme =
+    window.document.documentElement.getAttribute("data-theme") ?? "";
+  let color = "";
+  if (htmlTheme.indexOf("dark") !== -1) {
+    color = colorObj["dark"][name];
+  } else {
+    color = colorObj["light"][name];
+  }
+  if (opacity !== undefined) {
+    color = colorToRgb(color, opacity);
+  }
+  return color;
+};
+
+/**
+ * @description 获取主题颜色
+ * @param {参数类型} name 对应颜色字段
+ * @param {参数类型} opacity 透明度，设置了值会转化成rgba
+ * @return {返回值类型} color 返回主题颜色
+ */
+const getThemeColor = (name: string, opacity: number) => {
+  const htmlTheme =
+    window.document.documentElement.getAttribute("data-theme") ?? "";
+  let color = "";
+  if (colorObj[htmlTheme]) {
+    color = colorObj[htmlTheme][name];
+  } else {
+    color = colorObj["blue"][name];
+  }
+  if (opacity !== undefined) {
+    color = colorToRgb(color, opacity);
+  }
+  return color;
+};
+
+/**
  * @description 深拷贝
  * @param {Object} obj 源数据
  * @param {Array} notClone 不拷贝的内容
  */
-const deepClone = (
-  obj: { [key: string]: any },
-  notClone: Array<string> = []
-) => {
-  let result: { [key: string]: any } =
-    typeof obj.splice === "function" ? [] : {};
+const deepClone = (obj: Indexable, notClone: Array<string> = []): Indexable => {
+  let result: Indexable = typeof obj.splice === "function" ? [] : {};
   if (obj && typeof obj === "object") {
     for (let key in obj) {
       if (obj[key] && typeof obj[key] === "object" && !notClone.includes(key)) {
@@ -53,10 +93,4 @@ const deepClone = (
   return obj;
 };
 
-export {
-  // colorObj,
-  // getSeriesColor,
-  // getThemeColor,
-  colorToRgb,
-  deepClone
-};
+export { getSeriesColor, getThemeColor, colorToRgb, deepClone };
