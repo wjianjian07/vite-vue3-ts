@@ -1,21 +1,22 @@
-export declare const ACTIONSNAME: {
+export const ACTIONSNAME = {
   APP: {
-    SET_PAGE_LOADING:'setPageLoading',
-    RESET_ALL_STATE: 'resetAllState',
-    SET_PAGELOADING_ACTION: 'setPageLoadingAction'
-  };
+    SET_PAGE_LOADING: "setPageLoading",
+    RESET_ALL_STATE: "resetAllState",
+    SET_PAGELOADING_ACTION: "setPageLoadingAction",
+  },
   PERMISSION: {
-    RESET_STATE: 'resetState',
-    BUILD_ROUTES_ACTION: 'buildRoutesAction'
-  };
+    RESET_STATE: "resetState",
+    BUILD_ROUTES_ACTION: "buildRoutesAction",
+  },
   QIANKUN: {
     GET_GLOBAL_STATE: "getGlobalState",
-    SET_GLOBAL_STATE: "setGlobalState";
-    GET_COMPONENTS: "getComponents";
-  };
+    SET_GLOBAL_STATE: "setGlobalState",
+    SET_MAIN_SHARECOMPONENTS: "setMainShareComponents",
+    GET_COMPONENTS: "getComponents",
+  },
   USER: {
-    SET_INFO:'setInfo',
-    SET_BANK_TYPE: 'setBankType',
-    LOGOUT: 'logout',
-  };
+    SET_INFO: "setInfo",
+    SET_BANK_TYPE: "setBankType",
+    LOGOUT: "logout",
+  },
 };

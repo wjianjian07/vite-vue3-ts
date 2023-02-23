@@ -1,49 +1,27 @@
 <script setup lang="ts">
 import { ThemeEnum } from "@/enums/appEnum";
+import { customLoadMicroApp, getSystemItemList } from "@/qiankun/qiankunContainer";
+import { beforeLoad, afterMount } from "@/qiankun/qiankunPageLoad";
 import { requestGet } from "@/server"
+import { QiankunConfig } from "@/server/qiankunConfig";
 import { ClickOutside as vClickOutside } from 'element-plus'
-
+import { registerMicroApps, runAfterFirstMounted, start } from "qiankun";
+import { judgeSettingOpen } from "utils/common";
+import { event, eventKey } from "utils/global";
+import { useUserStoreWithOut } from "@/store/modules/user"
+import { useQiankunStoreWithOut } from "@/store/modules/qiankun";
 
 defineProps({
   msg: String,
 });
+const userStore = useUserStoreWithOut()
+const qiankunStore = useQiankunStoreWithOut()
 let skinIndex = ref(0)
-
-onMounted(() => {
-  requestGet({ url: 'asdasd?a=你好啊' },).then((res: any) => {
-    console.log(res, 'ertgergerger')
-  })
-})
-const setSkin = (index: number, e: ThemeEnum) => {
-  // let personalConfigs=[...this.skinTheme];
-  // if(personalConfigs.length==0){
-  //   personalConfigs.push({
-  //     confValue:null,
-  //     confDesc: "当前主题",
-  //     confKey: "skinTheme"
-  //   })
-  // }
-  // personalConfigs[0].confValue=e;
-  // personalConfigs.forEach(item => {
-  //   delete item['userId'];
-  //   delete item['confGroup'];
-  // });
-  // http.bdaAxios({
-  //   url:interAPI.personalConfig.saveByGroup,
-  //   method:"post",
-  //   data:{
-  //     group: "skin",
-  //     personalConfigs:personalConfigs
-  //   }
-  // }).then(res=>{
-  //   window.document.documentElement.setAttribute( "data-theme", e );
-  //   this.$store.commit(globalMutationType.getKey(globalMutationType.CM_SKIN_THEME), personalConfigs);
-  //   changeSkin();
-  // })
-  skinIndex.value = index;
-  window.document.documentElement.setAttribute("data-theme", e);
-}
+let dialogTimes = ref(0)
+let isSetting = ref(false)
+let showCascader = ref(false)
 const cascaderPanel = ref<HTMLElement>()
+const userDialog = ref<HTMLElement>(qiankunStore.shareComponents['centerUserDialog'])
 const options = reactive(
   [{
     value: 'zhinan',
@@ -241,11 +219,85 @@ const options = reactive(
     }]
   }]
 )
+
+onBeforeMount(() => {
+  event.off(eventKey.SETTING_OPEN);
+  event.on(eventKey.SETTING_OPEN, accountSetting);
+})
+onMounted(async () => {
+  requestGet({ url: 'asdasd?a=你好啊' },).then((res: any) => {
+    console.log(res, 'ertgergerger')
+  })
+  if (!window.qiankunStarted && QiankunConfig.qiankunOpen) {
+    const list = await getSystemItemList();
+    // 注册子应用
+    registerMicroApps(list, {
+      beforeLoad,
+      afterMount,
+    });
+
+    window.qiankunStarted = true;
+    start({
+      prefetch: false,
+      // strictStyleIsolation: true,
+      singular: false,
+      sandbox: false,
+    });
+  }
+  runAfterFirstMounted(() => {
+    judgeSettingOpen();
+  })
+})
+// 账号设置
+const accountSetting = () => {
+  isSetting.value = false;
+  dialogTimes.value = +new Date();
+  nextTick(() => {
+    isSetting.value = true;
+    nextTick(() => {
+      customLoadMicroApp("center", (() => {
+        // userDialog.openDialog({
+        //   userId: userStore.userInfo!.userId
+        // }, 2);
+      }));
+    })
+  })
+}
+
+const setSkin = (index: number, e: ThemeEnum) => {
+  // let personalConfigs=[...this.skinTheme];
+  // if(personalConfigs.length==0){
+  //   personalConfigs.push({
+  //     confValue:null,
+  //     confDesc: "当前主题",
+  //     confKey: "skinTheme"
+  //   })
+  // }
+  // personalConfigs[0].confValue=e;
+  // personalConfigs.forEach(item => {
+  //   delete item['userId'];
+  //   delete item['confGroup'];
+  // });
+  // http.bdaAxios({
+  //   url:interAPI.personalConfig.saveByGroup,
+  //   method:"post",
+  //   data:{
+  //     group: "skin",
+  //     personalConfigs:personalConfigs
+  //   }
+  // }).then(res=>{
+  //   window.document.documentElement.setAttribute( "data-theme", e );
+  //   this.$store.commit(globalMutationType.getKey(globalMutationType.CM_SKIN_THEME), personalConfigs);
+  //   changeSkin();
+  // })
+  skinIndex.value = index;
+  window.document.documentElement.setAttribute("data-theme", e);
+}
 const onClickOutside = () => {
   showCascader.value = false
   console.log(document.querySelector('.el-cascader-panel'), 'cascaderPanel')
 }
-let showCascader = ref(false)
+
 </script>
 
 <template>
@@ -276,8 +328,11 @@ let showCascader = ref(false)
       <el-button @click="showCascader = true">你好</el-button>
       <el-cascader-panel v-show="showCascader" ref="cascaderPanel" :options="options"></el-cascader-panel>
     </div>
+    <!-- 账号设置 -->
+    <div v-if="isSetting" :key="dialogTimes">
+      <component ref="userDialog" v-if="userDialog" :is="userDialog"></component>
+    </div>
   </div>
-
 </template>
 
 <style lang="scss" scoped>

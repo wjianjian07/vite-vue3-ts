@@ -8,7 +8,7 @@ export interface UserState {
   // lastUpdateTime: number;
 }
 
-export interface UserInfo {
+export interface UserInfo extends Indexable {
   userId: string | number;
   username: string;
   realName: string;
@@ -17,7 +17,6 @@ export interface UserInfo {
   homePath?: string;
   roles: RoleInfo[];
 }
-
 
 // APP_STORE
 export interface ProjectConfig {

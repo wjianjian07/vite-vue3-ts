@@ -102,6 +102,7 @@ const getSystemItemList = async () => {
         getGlobalState: useQiankunStore[ACTIONSNAME.QIANKUN.GET_GLOBAL_STATE],
         setGlobalState: useQiankunStore[ACTIONSNAME.QIANKUN.SET_GLOBAL_STATE],
         getComponent: useQiankunStore[ACTIONSNAME.QIANKUN.GET_COMPONENTS],
+        setMainShareComponents: useQiankunStore[ACTIONSNAME.QIANKUN.SET_MAIN_SHARECOMPONENTS],
         LoadMicroApp: customLoadMicroApp,
         event: event,
         eventKey: eventKey,
@@ -121,7 +122,7 @@ const getSystemItemList = async () => {
 const customLoadMicroApp = (
   name: string,
   callback: Function | undefined,
-  errorCallback: Function | undefined
+  errorCallback: Function | undefined = () =>({})
 ) => {
   let obj = SYSTEMLIST.find((item) => {
     return item.name == name;

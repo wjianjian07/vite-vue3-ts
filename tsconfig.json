@@ -43,7 +43,7 @@
     "src/**/*.js",
     "src/**/*.vue",
     "tailwind.config.js"
-  ],
+, "vite.config.js"  ],
   // 排除不需要 TypeScript 校验的文件
   "exclude": [
     "node_modules",

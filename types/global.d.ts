@@ -1,6 +1,7 @@
 // declare global {
   interface Window {
-    $systemList: any[]
+    $systemList: any[],
+    qiankunStarted: boolean
   }
 // }
 declare type Recordable<T = any> = Record<string, T>;
