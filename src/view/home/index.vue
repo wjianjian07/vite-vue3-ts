@@ -10,6 +10,7 @@ import { judgeSettingOpen } from "utils/common";
 import { event, eventKey } from "utils/global";
 import { useUserStoreWithOut } from "@/store/modules/user"
 import { useQiankunStoreWithOut } from "@/store/modules/qiankun";
+import api from '@/Api'
 
 defineProps({
   msg: String,
@@ -225,7 +226,7 @@ onBeforeMount(() => {
   event.on(eventKey.SETTING_OPEN, accountSetting);
 })
 onMounted(async () => {
-  requestGet({ url: 'asdasd?a=你好啊' },).then((res: any) => {
+  requestGet({ url: api.home.a, params: {aa: '你好啊'} },).then((res: any) => {
     console.log(res, 'ertgergerger')
   })
   if (!window.qiankunStarted && QiankunConfig.qiankunOpen) {

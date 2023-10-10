@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import treeEcharts from './echarts/treeEcharts.vue'
+// import treeEcharts from './echarts/treeEcharts.vue'
 defineComponent(() => {
-  treeEcharts
+  // treeEcharts
 })
 
 // const loading = ref(true)

@@ -21,7 +21,7 @@ class Loading {
     this.openLoading = () => {
       this.loading = ElLoading.service({
         lock: true,
-        text: "",
+        text: "加载中...",
         spinner: 'icon iconfont icon-bda-loading bda-loading',
         background: getSeriesColor("main_panel_background_color", 0.6),
         // spinner: "el-icon-loading",

@@ -8,6 +8,7 @@ import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
 // 全局主题样式
 import "./style/index.scss";
+import 'nprogress/nprogress.css' //进度条
 
 import router, { setupRouter } from "./router";
 import { setupRouterGuard } from "./router/guard";
